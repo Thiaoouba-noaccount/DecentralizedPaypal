@@ -1,0 +1,18 @@
+{
+  "name": "crypto-trade-easy",
+  "version": "1.0.0",
+  "description": "use smart contract to establish trustless trade for OTC, interact with existing stablecoin contract",
+  "main": "truffle.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "dev": "",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "GNU",
+  "dependencies": {
+    "mocha-steps": "^1.3.0"
+  }
+}
