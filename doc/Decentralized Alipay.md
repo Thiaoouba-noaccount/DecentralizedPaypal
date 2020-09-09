@@ -12,21 +12,21 @@ Copyright © 2019
 
 
 
-- Background
+- [Background](https://github.com/Thiaoouba-noaccount/DecentralizedPaypal/blob/master/doc/Decentralized%20Alipay.md#Background)
 
-- Requirements
+- [Requirements](https://github.com/Thiaoouba-noaccount/DecentralizedPaypal/blob/master/doc/Decentralized%20Alipay.md#Requirements)
 
-  - easy for use
+  - [easy for use](https://github.com/Thiaoouba-noaccount/DecentralizedPaypal/blob/master/doc/Decentralized%20Alipay.md#easy-for-use)
 
-  - smart contract to guarantee safety and security
+  - [smart contract to guarantee safety and security](https://github.com/Thiaoouba-noaccount/DecentralizedPaypal/blob/master/doc/Decentralized%20Alipay.md#smart-contract-to-guarantee-safety-and-security)
 
-  - incentive mechanism to attract community to be involved in the system
+  - [incentive mechanism to attract community to be involved in the system](https://github.com/Thiaoouba-noaccount/DecentralizedPaypal/blob/master/doc/Decentralized%20Alipay.md#incentive-mechanism-to-attract-community-to-be-involved-in-the-system#incentive-mechanism-to-attract-community-to-be-involved-in-the-system)
 
     
 
-- General proposal
+- [General proposal](https://github.com/Thiaoouba-noaccount/DecentralizedPaypal/blob/master/doc/Decentralized%20Alipay.md#General-proposal)
 
-- Conclusion
+- [Conclusion](https://github.com/Thiaoouba-noaccount/DecentralizedPaypal/blob/master/doc/Decentralized%20Alipay.md#Conclusion)
 
   
 

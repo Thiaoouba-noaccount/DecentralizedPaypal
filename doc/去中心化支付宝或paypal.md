@@ -12,17 +12,17 @@ Copyright © 2019
 
 
 
-- 背景
+- [背景](https://github.com/Thiaoouba-noaccount/DecentralizedPaypal/blob/master/doc/%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E6%94%AF%E4%BB%98%E5%AE%9D%E6%88%96paypal.md#背景)
 
-- 需求
+- [需求](https://github.com/Thiaoouba-noaccount/DecentralizedPaypal/blob/master/doc/%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E6%94%AF%E4%BB%98%E5%AE%9D%E6%88%96paypal.md#需求)
 
-  - 易用性
-  - 智能合约保障安全交易
-  - 激励机制
+  - [易用性](https://github.com/Thiaoouba-noaccount/DecentralizedPaypal/blob/master/doc/%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E6%94%AF%E4%BB%98%E5%AE%9D%E6%88%96paypal.md#易用性)
+  - [智能合约保障安全交易](https://github.com/Thiaoouba-noaccount/DecentralizedPaypal/blob/master/doc/%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E6%94%AF%E4%BB%98%E5%AE%9D%E6%88%96paypal.md#智能合约保障安全交易)
+  - [激励机制](https://github.com/Thiaoouba-noaccount/DecentralizedPaypal/blob/master/doc/%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E6%94%AF%E4%BB%98%E5%AE%9D%E6%88%96paypal.md#激励机制)
   
-- 流程详解
+- [流程详解](https://github.com/Thiaoouba-noaccount/DecentralizedPaypal/blob/master/doc/%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E6%94%AF%E4%BB%98%E5%AE%9D%E6%88%96paypal.md#流程详解)
 
-- 结论
+- [结论](https://github.com/Thiaoouba-noaccount/DecentralizedPaypal/blob/master/doc/%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E6%94%AF%E4%BB%98%E5%AE%9D%E6%88%96paypal.md#结论)
 
   
 
@@ -114,3 +114,7 @@ Paypal是ebay提供的支付平台，所以仅仅在ebay平台上，它有退钱
 # 结论
 
 这个去中心化支付宝系统，其设计初衷是为了“无账户交易系统”，为了买卖双方能更资金安全地进行交易，但是它的适用性远远高于此，它可以像支付宝或者paypal一样为购物者在用数字货币支付购物时候，进行仲裁的作用，这点甚至支付宝和paypal也不能在它们本身系统外能做到。由加密货币经济刺激驱动社区成员来维护自己的利益的系统。
+
+
+
+[English Version](https://github.com/Thiaoouba-noaccount/DecentralizedPaypal/blob/master/doc/Decentralized%20Alipay.md)
