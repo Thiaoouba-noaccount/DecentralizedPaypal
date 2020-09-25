@@ -113,6 +113,8 @@ In addition, I think the arbitration process should be handled off-chain, and th
 
 I hope this article can attract more insightful people to participate in the discussion or to achieve it together. In the decentralized world of blockchain, I believe that the power of the community is the most important. A dream, as long as there are a bunch of people discussing, can become true out of these discussion and efforts.
 
+![image.png](https://images.hive.blog/DQmbzGiQrzVJGq7A1pnXpGBkG2vrAYgHMcSgfzAjLpnfhwn/image.png)![image.png](h
+
 
 
 ## incentive mechanism
