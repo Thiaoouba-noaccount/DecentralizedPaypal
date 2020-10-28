@@ -3,30 +3,44 @@ import { PAY_TO_CONTRACT,WITHDRAW,PENDING_PAYMENT,RELEASE_PAYMENT,
     ACTIVE_PAYMENT,ENABLE_REFUND,REFUND,GET_PAYER,GET_PAYEE,GET_STATE,COIN_SELECTED
 } from './action-types/order-actions'
 
+import { PaypalContract } from '../../contracts-api'
+
 
 
 //add order action
-export const payToContract= (coin_select,recipient,price,id)=>{
+export const payToContract= (coin_address,recipient,price,id)=>{
+    console.log("orderid in payToContract",id)
     return{
         type: PAY_TO_CONTRACT,
-        coin_select,
-        recipient,
-        price,
-        id
+        payload: (new PaypalContract())
+                .payToContract(coin_address,recipient,price,id)
+                .then(() => (new PaypalContract()).getDeposit(id)),
+        
+        meta: {
+
+            id:id,
+            recipient:recipient,
+            price:price
+        }
+                
     }
 }
 
 export const withdraw=(id)=>{
     return{
         type: WITHDRAW,
-        id
+        payload: (new PaypalContract()).withdraw(id),
+        meta: id
     }
 }
 
 export const pendingPayment=(id)=>{
     return{
         type: PENDING_PAYMENT,
-        id
+        payload: (new PaypalContract())
+                .pendingPayment(id)
+                .then(() => (new PaypalContract()).getState(id)),
+        meta:id
     }
 }
 
@@ -34,21 +48,32 @@ export const releasePayment=(id)=>{
     console.log("order_id in orderActions:",id)
     return{
         type: RELEASE_PAYMENT,
-        id
+        payload: (new PaypalContract())
+                .releasePayment(id)
+                .then(() => (new PaypalContract()).getState(id)),
+        meta:id
     }
 }
 
 export const activePayment=(id)=>{
     return{
         type: ACTIVE_PAYMENT,
-        id
+        payload: (new PaypalContract())
+                .activePayment(id)
+                .then(() => (new PaypalContract()).getState(id)),
+        meta:id
     }
 }
 
 export const enableRefund=(id)=>{
+    console.log("enableRefund")
+    console.log('id=',id)
     return{
         type: ENABLE_REFUND,
-        id
+        payload: (new PaypalContract())
+                .enableRefund(id)
+                .then(() => (new PaypalContract()).getState(id)),
+        meta:id
     }
 }
 
@@ -56,7 +81,8 @@ export const enableRefund=(id)=>{
 export const refund=(id)=>{
     return{
         type: REFUND,
-        id
+        payload: (new PaypalContract()).refund(id),
+        meta:id
     }
 }
 

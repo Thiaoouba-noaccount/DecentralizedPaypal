@@ -21,7 +21,10 @@ import { coinSelected,payToContract } from './actions/orderActions'
 
 
     confirm = () =>{
-        this.props.payToContract(this.props.coin_select,this.state.recipient,this.props.price,this.props.orderid)
+        console.log("recipient in homejs:",this.state.recipient)
+        let coin_address = this.props.coins.find(coin=>coin.type===this.props.coin_select)
+        coin_address = coin_address.addr
+        this.props.payToContract(coin_address,this.state.recipient,this.props.price,this.props.orderid)
         this.props.history.push('/order')
     }
 

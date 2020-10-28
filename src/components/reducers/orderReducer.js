@@ -1,7 +1,6 @@
 import { PAY_TO_CONTRACT,WITHDRAW,PENDING_PAYMENT,RELEASE_PAYMENT,
     ACTIVE_PAYMENT,ENABLE_REFUND,REFUND,GET_PAYER,GET_PAYEE,GET_STATE,COIN_SELECTED } from '../actions/action-types/order-actions'
 
-import { PaypalContract } from '../../contracts-api'
 
 
 const initState = {
@@ -16,97 +15,81 @@ const initState = {
     //payer: '0x438269EBf0fa37fba49BBf2056Ce8A01a859a6E9',
     recipient: '0x32b410a236760F5c0831Bd0D14184E9a0a49bDb0',
     arbitrator: '0x438269EBf0fa37fba49BBf2056Ce8A01a859a6E9',
-    orderStatus: 'Active'
+    orderStatus: null,
+    lastStatus:null
 
 }
 const orderReducer=  (state = initState,action)=>{
-    const status = ['Active', 'Refunding', 'Pending', 'Releasing','Closed'];
+    const status = ['Active', 'Refunding', 'Pending', 'Releasing','Closed'];  
+
     switch (action.type) {
 
-      case PAY_TO_CONTRACT:
-        let coin_address = state.coins.find(coin=>coin.type===action.coin_select)
-        coin_address = coin_address.addr
-        console.log("recipient:",action.recipient)
-        let result = (new PaypalContract())
-                      .payToContract(coin_address,action.recipient,action.price,action.id)
-                      .then(() => (new PaypalContract()).getDeposit(action.id))
-            console.log("deposited:",result)
-            return{
-                ...state,
-                coin_select: action.coin_select,
-                recipient: action.recipient,
-                price: action.price,
-                orderid: action.id,
-                orderStatus:status[0]
-            }
+      case `${PAY_TO_CONTRACT}_PENDING`:
+      case `${WITHDRAW}_PENDING`:
+      case `${PENDING_PAYMENT}_PENDING`:
+      case `${RELEASE_PAYMENT}_PENDING`:
+      case `${ACTIVE_PAYMENT}_PENDING`:
+      case `${ENABLE_REFUND}_PENDING`:
+      case `${REFUND}_PENDING`:
+        console.log("ENABLE_REFUND Pending")
+        console.log("pending",action.meta)
+        return{
+            ...state,
+            orderStatus:'Progressing...'
+          }
 
-      case WITHDRAW:
-        (new PaypalContract()).withdraw(action.id)
+      case `${PAY_TO_CONTRACT}_REJECTED`:
+        console.log("_REJECTED",action.meta)
+        return{
+            ...state,
+            orderStatus: null
+          }
+
+      case `${WITHDRAW}_REJECTED`:
+      case `${PENDING_PAYMENT}_REJECTED`:
+      case `${RELEASE_PAYMENT}_REJECTED`:
+      case `${ACTIVE_PAYMENT}_REJECTED`:
+      case `${ENABLE_REFUND}_REJECTED`:
+      case `${REFUND}_REJECTED`:
+        console.log("_REJECTED",action.meta)
+        return{
+            ...state,
+            orderStatus: state.lastStatus
+          }
+
+      case `${PAY_TO_CONTRACT}_FULFILLED`:
+        console.log("_FULFILLED",action.meta.id)
+        return {
+          ...state,
+          orderStatus: status[0],
+          recipient: action.meta.recipient,
+          price: action.meta.price,
+          orderid: action.meta.id,
+          lastStatus:status[0]
+        };
+
+
+      
+      case `${WITHDRAW}_FULFILLED`:
+      case `${REFUND}_FULFILLED`:
         return{
             ...state,
             orderStatus:status[4]
-        }
-    
-      case PENDING_PAYMENT:
-       (new PaypalContract())
-                    .pendingPayment(action.id)
-                    .then(() => (new PaypalContract()).getState(action.id))
-                    .then(function(e) {
-                        console.log("status in orderReducer:",status[e])
-                        return{
-                          ...state,
-                          orderStatus: status[2]
-                        }
-                    })
-        return state
+          }
 
-      case RELEASE_PAYMENT:
+      
+      case `${PENDING_PAYMENT}_FULFILLED`:
+      case `${RELEASE_PAYMENT}_FULFILLED`:
+      case `${ACTIVE_PAYMENT}_FULFILLED`:
+      case `${ENABLE_REFUND}_FULFILLED`:
+        console.log("_FULFILLED",action.meta)
         
-        var e = (new PaypalContract())
-                    .releasePayment(action.id)
-                    .then(() => (new PaypalContract()).getState(action.id))
-        console.log("status in orderReducer:",status[e])
-        return{
-                ...state,
-                orderStatus:status[3]
-              }
-        
-    
-      case ACTIVE_PAYMENT:
-        (new PaypalContract())
-                    .activePayment(action.id)
-                    .then(() => (new PaypalContract()).getState(action.id))
-                    .then(function(e) {
-                                      console.log("status in orderReducer:",status[e])
-                                      return{
-                                        ...state,
-                                        orderStatus: status[e]
-                                      }
-                    })
-        return state
-
-      case ENABLE_REFUND:
-        (new PaypalContract())
-                    .enableRefund(action.id)
-                    .then(() => (new PaypalContract()).getState(action.id))
-                    .then(function(e) {
-                                      console.log("status in orderReducer:",status[e])
-                                      return{
-                                        ...state,
-                                        orderStatus: status[e]
-                                      }
-                    })
-        return{
-                ...state,
-                orderStatus:status[1]
-              }
-
-      case REFUND:
-        (new PaypalContract()).refund(action.id)
         return{
             ...state,
-            orderStatus:status[4]
-        }
+            orderid: action.meta,
+            orderStatus:status[action.payload],
+            lastStatus:status[action.payload]
+          }
 
       case COIN_SELECTED:
         return{

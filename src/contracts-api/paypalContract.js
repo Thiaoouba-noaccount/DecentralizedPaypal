@@ -18,6 +18,7 @@ export default class PaypalContract {
       this.contract.setProvider(this.web3.currentProvider)
       this.usdtcontract = contract(usdtContractMeta)
       this.usdtcontract.setProvider(this.web3.currentProvider)
+      console.log("constructor completed!")
       // this.web3.eth.getAccounts().then(e => { 
       //       this.accounts = e;
       //       this.account = e[0];
@@ -37,8 +38,13 @@ export default class PaypalContract {
     console.log("coin address:",coin_address)
     const coincontractInstance = await this.usdtcontract.at(coin_address)
     const contractInstance = await this.contract.deployed()
-    var priceUnit = this.web3.utils.toBN(price).mul(this.web3.utils.toBN(this.web3.utils.toWei("1")))
+    var priceUnit = this.web3.utils.toBN(price).mul(this.web3.utils.toBN(this.web3.utils.toWei("1"))).toString()
+    //BN is not working in herokuapp
+    console.log("priceUnit in payToContract:",priceUnit)
+    console.log("recipient in payToContract:",recipient)
+    console.log("approve",contractInstance.address,currentAccount[0])
     await coincontractInstance.approve(contractInstance.address,priceUnit,{from: currentAccount[0]})
+    console.log("approve end")
     await contractInstance.deposit(coin_address,recipient,priceUnit,order_id,{ from: currentAccount[0] })
     //await contractInstance.setExpiryDate(order_id,0,{ from: currentAccount[0] })
 
