@@ -92,5 +92,5 @@ We welcome more people to participate in this project in various forms, investor
 
 
 
-[中文版](https://github.com/Thiaoouba-noaccount/ExchangeHub/blob/master/TAO%20%E6%95%B0%E5%AD%97%E8%B4%A7%E5%B8%81%E4%BB%8B%E7%BB%8D.md)
+[中文版](https://github.com/Thiaoouba-noaccount/DecentralizedPaypal/blob/master/TAO%20%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D.md)
 
