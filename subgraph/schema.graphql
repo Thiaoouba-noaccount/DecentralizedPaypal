@@ -4,3 +4,66 @@ type ExampleEntity @entity {
   orderid: BigInt! # uint256
   payer: Bytes! # address
 }
+
+enum Status {
+  Active
+  Refunding
+  Pending
+  Releasing
+}
+
+type Order @entity {
+
+  id: ID!
+
+  payee: Bytes!
+  payer: Bytes!
+  expiryTime: BigInt
+  amount: BigInt!
+  token: Bytes!
+  state: Status
+}
+
+type Transaction @entity {
+  id: ID! # txn hash
+  blockNumber: BigInt!
+  timestamp: BigInt!
+
+  deposits: [deposit]!
+  releaseFunds: [releaseFund]!
+  pendingFunds: [pendingFund]!
+  activeFunds: [activeFund]!
+  enableRefunds: [enableRefund]!
+  refunds: [refund]!
+  withdraws: [withdraw]!
+}
+
+
+type deposit @entity {
+  id: ID!
+  transaction: Transaction!
+  timestamp: BigInt! # need this to pull recent txns for specific token or pair
+
+  payer: Bytes!
+  recipient: Bytes!
+  amount: BigDecimal
+}
+
+type refund @entity {
+  id: ID!
+  transaction: Transaction!
+  timestamp: BigInt! # need this to pull recent txns for specific token or pair
+  recipient: Bytes!
+  amount: BigDecimal
+}
+
+type withdraw @entity {
+  id: ID!
+  transaction: Transaction!
+  timestamp: BigInt! # need this to pull recent txns for specific token or pair
+  recipient: Bytes!
+  amount: BigDecimal
+}
+
+
+
