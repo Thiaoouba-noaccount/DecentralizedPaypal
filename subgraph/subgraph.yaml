@@ -1,0 +1,53 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Paypal
+    network: ropsten
+    source:
+      address: "0xbBa3c5357165D27bABa255EF05Ef412737467773"
+      abi: Paypal
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Deposited
+        - Withdraw
+        - Refund
+        - ReleaseFund
+        - PendingFund
+        - ActiveFund
+        - EnableRefund
+        - ArbitratorWithdraw
+        - ArbitratorAdded
+        - ArbitratorRemoved
+        - PrimaryTransferred
+      abis:
+        - name: Paypal
+          file: ./abis/Paypal.json
+      eventHandlers:
+        - event: Deposited(uint256,address,address,uint256)
+          handler: handleDeposited
+        - event: Withdraw(uint256,address,uint256)
+          handler: handleWithdraw
+        - event: Refund(uint256,address,uint256)
+          handler: handleRefund
+        - event: ReleaseFund(uint256)
+          handler: handleReleaseFund
+        - event: PendingFund(uint256)
+          handler: handlePendingFund
+        - event: ActiveFund(uint256)
+          handler: handleActiveFund
+        - event: EnableRefund(uint256)
+          handler: handleEnableRefund
+        - event: ArbitratorWithdraw(address,uint256)
+          handler: handleArbitratorWithdraw
+        - event: ArbitratorAdded(indexed address)
+          handler: handleArbitratorAdded
+        - event: ArbitratorRemoved(indexed address)
+          handler: handleArbitratorRemoved
+        - event: PrimaryTransferred(address)
+          handler: handlePrimaryTransferred
+      file: ./src/mapping.ts
