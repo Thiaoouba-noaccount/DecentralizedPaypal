@@ -73,6 +73,5 @@ target/
 tags
 *~
 node_modules/
-generated/
 migrations/
 truffle-config.js
